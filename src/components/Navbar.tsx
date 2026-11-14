@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { selectCartCount, useAppSelector } from "../store/hooks";
+import CartDrawer from "./CartDrawer";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -17,11 +18,20 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const cartCount = useAppSelector(selectCartCount);
 
   const closeMenu = () => setMenuOpen(false);
 
+  const openCart = () => {
+    setMenuOpen(false);
+    setCartOpen(true);
+  };
+
+  // The drawer is rendered next to the header, not inside it: the header's
+  // backdrop-blur would otherwise trap the drawer's fixed position inside it.
   return (
+    <>
     <header className="sticky top-0 z-10 border-b border-brand-100 bg-white/95 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link
@@ -43,11 +53,12 @@ function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/cart"
-            onClick={closeMenu}
-            className="relative rounded-md px-3 py-2 text-stone-700 hover:text-brand-600"
-            aria-label={`Cart, ${cartCount} items`}
+          <button
+            type="button"
+            onClick={openCart}
+            className="relative cursor-pointer rounded-md px-3 py-2 text-stone-700 hover:text-brand-600"
+            aria-label={`Open cart, ${cartCount} items`}
+            aria-expanded={cartOpen}
           >
             🛒
             {cartCount > 0 && (
@@ -55,7 +66,7 @@ function Navbar() {
                 {cartCount}
               </span>
             )}
-          </Link>
+          </button>
 
           <button
             type="button"
@@ -90,6 +101,9 @@ function Navbar() {
         </ul>
       )}
     </header>
+
+    <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+    </>
   );
 }
 
