@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "category": "Fiction",
+    "price": 9.99,
+    "rating": 4.7,
+    "cover": "",
+    "description": "Elizabeth Bennet and Mr. Darcy misjudge each other badly before slowly learning who the other really is, in a sharp comedy about manners, money and marriage."
+  },
+  {
+    "id": 2,
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "category": "Fiction",
+    "price": 8.49,
+    "rating": 4.4,
+    "cover": "",
+    "description": "A young scientist brings a creature to life and then abandons it, setting off a tragedy about ambition, loneliness and responsibility."
+  },
+  {
+    "id": 3,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "category": "Fiction",
+    "price": 10.99,
+    "rating": 4.3,
+    "cover": "",
+    "description": "Nick Carraway watches his mysterious neighbour Jay Gatsby chase a lost love through the parties and excess of 1920s Long Island."
+  },
+  {
+    "id": 4,
+    "title": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "category": "Science",
+    "price": 15.99,
+    "rating": 4.6,
+    "cover": "",
+    "description": "A readable tour of the universe, from the Big Bang to black holes, written for people with no background in physics."
+  },
+  {
+    "id": 5,
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "category": "Science",
+    "price": 14.5,
+    "rating": 4.5,
+    "cover": "",
+    "description": "Explains evolution from the point of view of genes, and how that view accounts for cooperation and altruism in living things."
+  },
+  {
+    "id": 6,
+    "title": "Cosmos",
+    "author": "Carl Sagan",
+    "category": "Science",
+    "price": 16.99,
+    "rating": 4.8,
+    "cover": "",
+    "description": "A sweeping journey through space and the history of science, told with curiosity and wonder."
+  },
+  {
+    "id": 7,
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "category": "History",
+    "price": 18.99,
+    "rating": 4.6,
+    "cover": "",
+    "description": "How a fairly ordinary species of ape came to dominate the planet, told through the cognitive, agricultural and scientific revolutions."
+  },
+  {
+    "id": 8,
+    "title": "Guns, Germs, and Steel",
+    "author": "Jared Diamond",
+    "category": "History",
+    "price": 17.49,
+    "rating": 4.3,
+    "cover": "",
+    "description": "Asks why some societies conquered others, and answers with geography, crops, animals and disease rather than people."
+  },
+  {
+    "id": 9,
+    "title": "The Silk Roads",
+    "author": "Peter Frankopan",
+    "category": "History",
+    "price": 19.99,
+    "rating": 4.4,
+    "cover": "",
+    "description": "World history retold from the trade routes linking East and West, putting Central Asia and the Middle East at the centre."
+  },
+  {
+    "id": 10,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "category": "Technology",
+    "price": 34.99,
+    "rating": 4.5,
+    "cover": "",
+    "description": "Practical habits for writing code that is easy to read, test and change, with many before-and-after examples."
+  },
+  {
+    "id": 11,
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt & David Thomas",
+    "category": "Technology",
+    "price": 39.99,
+    "rating": 4.7,
+    "cover": "",
+    "description": "Short, practical lessons on becoming a better developer, from managing tools to thinking about design and teamwork."
+  },
+  {
+    "id": 12,
+    "title": "Eloquent JavaScript",
+    "author": "Marijn Haverbeke",
+    "category": "Technology",
+    "price": 29.99,
+    "rating": 4.4,
+    "cover": "",
+    "description": "A friendly introduction to programming and to JavaScript, with exercises that build real projects in the browser."
+  }
+]

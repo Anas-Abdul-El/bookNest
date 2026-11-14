@@ -43,7 +43,8 @@ The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Repor
 | React + TypeScript (Vite) | Builds the user interface; Vite runs the dev server and makes production builds |
 | React Router | Moves between pages in the browser, including the `/books/:id` route |
 | Tailwind CSS | Styling with utility classes and screen-size breakpoints |
-| React Context + `useReducer` | Shared cart state (`ADD`, `REMOVE`, `UPDATE_QTY`, `CLEAR`) |
+| Redux Toolkit + React Redux | Shared cart state in a cart slice (add, remove, update quantity, clear) |
+| React Hook Form + Zod | Contact form handling and validation |
 | `localStorage` | Saves the cart between visits |
 | JSON mock data | A local book catalogue used in place of a backend |
 | ESLint | Linting |
@@ -54,7 +55,7 @@ The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Repor
 src/
 ├── assets/          images, icons
 ├── components/      Navbar, Footer, BookCard, SearchBar, FilterPanel, CartItem
-├── context/         CartContext (shared cart state, saved to localStorage)
+├── store/           Redux store and cart slice (cart saved to localStorage)
 ├── data/            books.json (mock catalogue)
 ├── pages/           Home, Books, BookDetails, Cart, About, Contact
 ├── App.tsx          routes
