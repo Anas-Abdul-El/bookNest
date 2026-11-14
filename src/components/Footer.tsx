@@ -16,9 +16,7 @@ function Footer() {
           <ul className="mt-2 space-y-1 text-sm">
             <li><Link to="/books" className="hover:text-white">All books</Link></li>
             <li><Link to="/about" className="hover:text-white">About us</Link></li>
-            <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-            <li><Link to="/cart" className="hover:text-white">Your cart</Link></li>
-          </ul>
+            <li><Link to="/contact" className="hover:text-white">Contact</Link></li>          </ul>
         </div>
 
         <div>
