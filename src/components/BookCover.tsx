@@ -10,11 +10,13 @@ const categoryColors: Record<string, string> = {
 type BookCoverProps = {
   book: Book;
   className?: string;
+  // Small thumbnails (e.g. in the cart) show only the title.
+  compact?: boolean;
 };
 
 // Shows the cover image when the book has one; otherwise draws a simple
 // coloured cover with the title and author, so no outside images are needed.
-function BookCover({ book, className = "" }: BookCoverProps) {
+function BookCover({ book, className = "", compact = false }: BookCoverProps) {
   if (book.cover) {
     return (
       <img
@@ -26,6 +28,20 @@ function BookCover({ book, className = "" }: BookCoverProps) {
   }
 
   const colors = categoryColors[book.category] ?? "from-stone-600 to-stone-800";
+
+  if (compact) {
+    return (
+      <div
+        role="img"
+        aria-label={`Cover of ${book.title}`}
+        className={`flex aspect-[2/3] w-full items-end rounded bg-gradient-to-br p-2 text-white ${colors} ${className}`}
+      >
+        <p className="font-serif text-[0.65rem] leading-tight font-bold">
+          {book.title}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div
