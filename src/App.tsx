@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import About from "./pages/About";
 import Books from "./pages/Books";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -10,6 +11,7 @@ function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="books" element={<Books />} />
+        <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
