@@ -29,25 +29,26 @@ There are no tests yet (Vitest + React Testing Library is listed as future work)
 | `/` | Home: hero, featured books, categories, CTA |
 | `/books` | Catalogue: search (title/author), filter (category, price range), sort |
 | `/books/:id` | Book details: cover, description, price, rating, add to cart |
-| `/cart` | Line items, quantity controls, total, simulated checkout |
 | `/about` | Store story, mission, team |
 | `/contact` | Contact form validated with Zod + React Hook Form |
+
+There is no `/cart` page. The cart is a slide-in sidebar (`CartDrawer`) opened from the Navbar's cart button; its open state lives in `Navbar`.
 
 ## Structure (target)
 
 ```
 src/
 ├── assets/       images, icons
-├── components/   Navbar, Footer, BookCard, SearchBar, FilterPanel, CartItem
+├── components/   Navbar, Footer, BookCard, SearchBar, FilterPanel, CartDrawer, CartItem
 ├── store/        Redux store + cartSlice
 ├── data/         books.json (mock catalogue)
-├── pages/        Home, Books, BookDetails, Cart, About, Contact
+├── pages/        Home, Books, BookDetails, About, Contact
 ├── types/        shared TS types (Book, CartItem)
 ├── App.tsx       routes
 └── main.tsx      entry point (Provider + Router)
 ```
 
-Built so far: Home and Cart pages, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Routes not built yet fall through to `NotFound`.
+Built so far: Home page, the cart sidebar, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Routes not built yet fall through to `NotFound`.
 
 Books have `"cover": ""` in the mock data; `BookCover` then draws a coloured placeholder cover per category, so no outside images (and no image credits) are needed. Set `cover` to a path in `public/` to use a real image.
 
