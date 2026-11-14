@@ -25,7 +25,10 @@ function BookCard({ book }: BookCardProps) {
           {book.title}
         </Link>
         <p className="mt-1 text-sm text-stone-600">{book.author}</p>
-        <p className="mt-1 text-sm text-amber-600" aria-label={`Rated ${book.rating} out of 5`}>
+        <p
+          className="mt-1 text-sm text-amber-600"
+          aria-label={`Rated ${book.rating} out of 5`}
+        >
           ★ {book.rating.toFixed(1)}
         </p>
 
@@ -34,7 +37,7 @@ function BookCard({ book }: BookCardProps) {
           <button
             type="button"
             onClick={() => dispatch(addToCart(book))}
-            className="rounded-md bg-brand-500 px-3 py-2 text-sm font-medium text-white hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            className="cursor-pointer rounded-md bg-brand-500 px-3 py-2 text-sm font-medium text-white hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
           >
             Add to cart
           </button>

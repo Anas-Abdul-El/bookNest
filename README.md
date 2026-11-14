@@ -20,7 +20,7 @@ The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Repor
 - **Catalogue:** books shown as responsive cards (1 column on phones, 2 on tablets, 3–4 on desktops).
 - **Search, filter and sort:** search by title or author, filter by category and price range, and sort the results.
 - **Book pages:** each book has its own details page at `/books/:id`.
-- **Shopping cart:** add books, change quantities, remove items and see the running total.
+- **Shopping cart:** a sidebar that slides in from any page, where you can change quantities, remove items, see the running total and check out (simulated).
 - **Saved cart:** the cart is kept in `localStorage`, so it survives page reloads.
 - **Contact form:** the form checks its fields before sending.
 - **Mobile-first layout:** works on screens from 360 px wide up to large desktops, with a hamburger menu on small screens.
@@ -32,9 +32,10 @@ The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Repor
 | Home | `/` | Hero banner, featured books, categories, call to action |
 | Books | `/books` | Full catalogue with search, filters and sorting |
 | Book Details | `/books/:id` | Cover, description, price, rating, add-to-cart |
-| Cart | `/cart` | Line items, quantity controls, total, simulated checkout |
 | About | `/about` | Store story, mission and team |
 | Contact | `/contact` | Contact form with validation and store information |
+
+The cart is not a separate page: the cart button in the navbar opens it as a sidebar over the current page.
 
 ## Tech stack
 
@@ -54,10 +55,10 @@ The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Repor
 ```
 src/
 ├── assets/          images, icons
-├── components/      Navbar, Footer, BookCard, SearchBar, FilterPanel, CartItem
+├── components/      Navbar, Footer, BookCard, SearchBar, FilterPanel, CartDrawer, CartItem
 ├── store/           Redux store and cart slice (cart saved to localStorage)
 ├── data/            books.json (mock catalogue)
-├── pages/           Home, Books, BookDetails, Cart, About, Contact
+├── pages/           Home, Books, BookDetails, About, Contact
 ├── App.tsx          routes
 └── main.tsx         entry point
 ```
@@ -105,7 +106,7 @@ pnpm dev
 
 ## Screenshots
 
-_Screenshots of Home, Books, Book Details, Cart and the mobile views will be added here._
+_Screenshots of Home, Books, Book Details, the cart sidebar and the mobile views will be added here._
 
 ## Scope and limitations
 
