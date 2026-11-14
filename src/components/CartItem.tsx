@@ -6,9 +6,11 @@ import BookCover from "./BookCover";
 
 type CartItemProps = {
   item: CartItemType;
+  // Called when a link to the book is clicked, so the cart sidebar can close.
+  onNavigate?: () => void;
 };
 
-function CartItem({ item }: CartItemProps) {
+function CartItem({ item, onNavigate }: CartItemProps) {
   const dispatch = useAppDispatch();
   const { book, quantity } = item;
 
@@ -17,60 +19,57 @@ function CartItem({ item }: CartItemProps) {
   };
 
   return (
-    <li className="flex gap-4 rounded-lg bg-white p-4 shadow-sm">
-      <Link to={`/books/${book.id}`} className="w-20 shrink-0 sm:w-24">
+    <li className="flex gap-3 rounded-lg bg-white p-3 shadow-sm">
+      <Link to={`/books/${book.id}`} onClick={onNavigate} className="w-16 shrink-0">
         <BookCover book={book} compact />
       </Link>
 
-      <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <Link
-            to={`/books/${book.id}`}
-            className="font-serif text-lg leading-snug font-semibold hover:text-brand-600"
+      <div className="flex flex-1 flex-col">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <Link
+              to={`/books/${book.id}`}
+              onClick={onNavigate}
+              className="font-serif leading-snug font-semibold hover:text-brand-600"
+            >
+              {book.title}
+            </Link>
+            <p className="text-sm text-stone-600">{book.author}</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => dispatch(removeFromCart(book.id))}
+            className="cursor-pointer rounded p-1 text-stone-400 hover:bg-red-50 hover:text-red-600"
+            aria-label={`Remove ${book.title} from cart`}
           >
-            {book.title}
-          </Link>
-          <p className="text-sm text-stone-600">{book.author}</p>
-          <p className="mt-1 text-sm text-stone-500">
-            ${book.price.toFixed(2)} each
-          </p>
+            ✕
+          </button>
         </div>
 
-        <div className="flex items-center justify-between gap-6 sm:justify-end">
+        <div className="mt-auto flex items-center justify-between pt-2">
           <div className="flex items-center rounded-md border border-stone-300">
             <button
               type="button"
               onClick={() => changeQuantity(quantity - 1)}
-              className="cursor-pointer px-3 py-1 text-lg hover:bg-stone-100"
+              className="cursor-pointer px-2.5 py-0.5 hover:bg-stone-100"
               aria-label={`Decrease quantity of ${book.title}`}
             >
               −
             </button>
-            <span className="min-w-8 text-center font-medium" aria-live="polite">
+            <span className="min-w-7 text-center text-sm font-medium" aria-live="polite">
               {quantity}
             </span>
             <button
               type="button"
               onClick={() => changeQuantity(quantity + 1)}
-              className="cursor-pointer px-3 py-1 text-lg hover:bg-stone-100"
+              className="cursor-pointer px-2.5 py-0.5 hover:bg-stone-100"
               aria-label={`Increase quantity of ${book.title}`}
             >
               +
             </button>
           </div>
 
-          <p className="w-20 text-right font-bold">
-            ${(book.price * quantity).toFixed(2)}
-          </p>
-
-          <button
-            type="button"
-            onClick={() => dispatch(removeFromCart(book.id))}
-            className="cursor-pointer text-sm text-red-600 hover:underline"
-            aria-label={`Remove ${book.title} from cart`}
-          >
-            Remove
-          </button>
+          <p className="font-bold">${(book.price * quantity).toFixed(2)}</p>
         </div>
       </div>
     </li>
