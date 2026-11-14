@@ -47,7 +47,9 @@ src/
 └── main.tsx      entry point (Provider + Router)
 ```
 
-The project is freshly scaffolded: `src/` currently holds only `App.tsx`, `main.tsx`, `App.css` and `index.css`.
+Built so far: Home page, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Routes not built yet fall through to `NotFound`.
+
+Books have `"cover": ""` in the mock data; `BookCover` then draws a coloured placeholder cover per category, so no outside images (and no image credits) are needed. Set `cover` to a path in `public/` to use a real image.
 
 ## Data model
 
