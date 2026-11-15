@@ -10,9 +10,12 @@ export const sortOptions = [
 
 export type SortOption = (typeof sortOptions)[number]["value"];
 
+export const DEFAULT_SORT: SortOption = "featured";
+
 export type BookFilters = {
   search: string;
   category: string; // "" means all categories
+  // null means "no limit"
   minPrice: number | null;
   maxPrice: number | null;
   sort: SortOption;
