@@ -1,16 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "./store";
 
+// Typed versions of useDispatch and useSelector. Use these instead of the
+// plain react-redux hooks. Selectors live in cartSlice.ts.
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
-
-export const selectCartItems = (state: RootState) => state.cart.items;
-
-export const selectCartCount = (state: RootState) =>
-  state.cart.items.reduce((total, item) => total + item.quantity, 0);
-
-export const selectCartTotal = (state: RootState) =>
-  state.cart.items.reduce(
-    (total, item) => total + item.book.price * item.quantity,
-    0,
-  );
