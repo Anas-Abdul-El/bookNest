@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
+import EmptyState from "../components/EmptyState";
+import { ROUTES } from "../constants/routes";
+import { buttonClass } from "../styles/classNames";
 
-// Also shown for pages that are not built yet (Books, About, Contact, Cart).
+// Shown for any address that doesn't match a route.
 function NotFound() {
   return (
-    <section className="mx-auto max-w-xl px-4 py-24 text-center">
-      <p className="text-6xl" aria-hidden="true">📭</p>
-      <h1 className="mt-4 font-serif text-3xl font-bold">Page not found</h1>
-      <p className="mt-3 text-stone-600">
-        This page doesn't exist yet, or it may have moved.
-      </p>
-      <Link
-        to="/"
-        className="mt-8 inline-block rounded-md bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600"
+    <section className="mx-auto max-w-xl px-4 py-24">
+      <EmptyState
+        icon="📭"
+        title="Page not found"
+        titleAs="h1"
+        action={
+          <Link to={ROUTES.home} className={buttonClass()}>
+            Back to home
+          </Link>
+        }
       >
-        Back to home
-      </Link>
+        This page doesn't exist, or it may have moved.
+      </EmptyState>
     </section>
   );
 }

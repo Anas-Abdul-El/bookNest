@@ -1,14 +1,18 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { clearCart } from "../store/cartSlice";
+import { ROUTES } from "../constants/routes";
+import { STORE_INFO } from "../constants/storeInfo";
 import {
+  clearCart,
   selectCartCount,
   selectCartItems,
   selectCartTotal,
-  useAppDispatch,
-  useAppSelector,
-} from "../store/hooks";
+} from "../store/cartSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { buttonClass } from "../styles/classNames";
+import { formatPrice } from "../utils/format";
 import CartItem from "./CartItem";
+import EmptyState from "./EmptyState";
 
 type CartDrawerProps = {
   isOpen: boolean;
@@ -59,6 +63,34 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     };
   }, [isOpen]);
 
+  const browseLink = (label: string) => (
+    <Link to={ROUTES.books} onClick={handleClose} className={buttonClass()}>
+      {label}
+    </Link>
+  );
+
+  const renderContent = () => {
+    if (orderPlaced) {
+      return (
+        <EmptyState icon="🎉" title="Thank you for your order!" titleAs="h3" action={browseLink("Keep browsing")}>
+          This is a demo store, so no payment was taken and nothing will be shipped.
+        </EmptyState>
+      );
+    }
+
+    if (items.length === 0) {
+      return (
+        <EmptyState icon="🛒" title="Your cart is empty" titleAs="h3" action={browseLink("Browse books")}>
+          Find something you'll love in the catalogue.
+        </EmptyState>
+      );
+    }
+
+    return null;
+  };
+
+  const message = renderContent();
+
   return (
     <div className={isOpen ? "" : "pointer-events-none"} inert={!isOpen}>
       {/* Dark overlay; clicking it closes the drawer */}
@@ -80,7 +112,8 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       >
         <header className="flex items-center justify-between border-b border-brand-100 bg-white px-5 py-4">
           <h2 id="cart-drawer-title" className="font-serif text-2xl font-bold">
-            Your cart {count > 0 && <span className="text-base font-normal text-stone-500">({count})</span>}
+            Your cart{" "}
+            {count > 0 && <span className="text-base font-normal text-stone-500">({count})</span>}
           </h2>
           <button
             ref={closeButtonRef}
@@ -93,37 +126,8 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </button>
         </header>
 
-        {orderPlaced ? (
-          <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-            <p className="text-6xl" aria-hidden="true">🎉</p>
-            <p className="mt-4 font-serif text-2xl font-bold">Thank you for your order!</p>
-            <p className="mt-3 text-stone-600">
-              This is a demo store, so no payment was taken and nothing will be
-              shipped.
-            </p>
-            <Link
-              to="/books"
-              onClick={handleClose}
-              className="mt-8 rounded-md bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600"
-            >
-              Keep browsing
-            </Link>
-          </div>
-        ) : items.length === 0 ? (
-          <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-            <p className="text-6xl" aria-hidden="true">🛒</p>
-            <p className="mt-4 font-serif text-2xl font-bold">Your cart is empty</p>
-            <p className="mt-3 text-stone-600">
-              Find something you'll love in the catalogue.
-            </p>
-            <Link
-              to="/books"
-              onClick={handleClose}
-              className="mt-8 rounded-md bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600"
-            >
-              Browse books
-            </Link>
-          </div>
+        {message ? (
+          <div className="flex flex-1 items-center justify-center px-6">{message}</div>
         ) : (
           <>
             <div className="flex-1 overflow-y-auto px-5 py-4">
@@ -144,16 +148,16 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <footer className="border-t border-brand-100 bg-white px-5 py-4">
               <div className="flex justify-between text-sm text-stone-600">
                 <span>Shipping</span>
-                <span>Free</span>
+                <span>{STORE_INFO.shipping}</span>
               </div>
               <div className="mt-2 flex justify-between text-lg font-bold">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{formatPrice(total)}</span>
               </div>
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="mt-4 w-full cursor-pointer rounded-md bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600"
+                className={`${buttonClass()} mt-4 w-full`}
               >
                 Checkout
               </button>

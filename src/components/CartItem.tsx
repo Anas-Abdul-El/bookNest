@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { bookPath } from "../constants/routes";
 import { removeFromCart, updateQuantity } from "../store/cartSlice";
 import { useAppDispatch } from "../store/hooks";
 import type { CartItem as CartItemType } from "../types/book";
+import { formatPrice } from "../utils/format";
 import BookCover from "./BookCover";
 
 type CartItemProps = {
@@ -10,17 +12,21 @@ type CartItemProps = {
   onNavigate?: () => void;
 };
 
+const QUANTITY_BUTTON_CLASS = "cursor-pointer px-2.5 py-0.5 hover:bg-stone-100";
+
 function CartItem({ item, onNavigate }: CartItemProps) {
   const dispatch = useAppDispatch();
   const { book, quantity } = item;
+  const detailsPath = bookPath(book.id);
 
+  // A quantity of 0 removes the book (handled by the cart slice).
   const changeQuantity = (newQuantity: number) => {
     dispatch(updateQuantity({ id: book.id, quantity: newQuantity }));
   };
 
   return (
     <li className="flex gap-3 rounded-lg bg-white p-3 shadow-sm">
-      <Link to={`/books/${book.id}`} onClick={onNavigate} className="w-16 shrink-0">
+      <Link to={detailsPath} onClick={onNavigate} className="w-16 shrink-0">
         <BookCover book={book} compact />
       </Link>
 
@@ -28,7 +34,7 @@ function CartItem({ item, onNavigate }: CartItemProps) {
         <div className="flex items-start justify-between gap-2">
           <div>
             <Link
-              to={`/books/${book.id}`}
+              to={detailsPath}
               onClick={onNavigate}
               className="font-serif leading-snug font-semibold hover:text-brand-600"
             >
@@ -51,7 +57,7 @@ function CartItem({ item, onNavigate }: CartItemProps) {
             <button
               type="button"
               onClick={() => changeQuantity(quantity - 1)}
-              className="cursor-pointer px-2.5 py-0.5 hover:bg-stone-100"
+              className={QUANTITY_BUTTON_CLASS}
               aria-label={`Decrease quantity of ${book.title}`}
             >
               −
@@ -62,14 +68,14 @@ function CartItem({ item, onNavigate }: CartItemProps) {
             <button
               type="button"
               onClick={() => changeQuantity(quantity + 1)}
-              className="cursor-pointer px-2.5 py-0.5 hover:bg-stone-100"
+              className={QUANTITY_BUTTON_CLASS}
               aria-label={`Increase quantity of ${book.title}`}
             >
               +
             </button>
           </div>
 
-          <p className="font-bold">${(book.price * quantity).toFixed(2)}</p>
+          <p className="font-bold">{formatPrice(book.price * quantity)}</p>
         </div>
       </div>
     </li>

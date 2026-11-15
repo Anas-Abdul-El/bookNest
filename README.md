@@ -54,11 +54,15 @@ The cart is not a separate page: the cart button in the navbar opens it as a sid
 
 ```
 src/
-├── assets/          images, icons
-├── components/      Navbar, Footer, BookCard, SearchBar, FilterPanel, CartDrawer, CartItem
-├── store/           Redux store and cart slice (cart saved to localStorage)
-├── data/            books.json (mock catalogue)
-├── pages/           Home, Books, BookDetails, About, Contact
+├── components/      shared UI and page sections (Navbar, Footer, BookCard, CartDrawer, ContactForm, …)
+├── constants/       routes, store details and catalogue settings
+├── data/            books.json (mock catalogue), book lookups, category icons and colours
+├── hooks/           useBookFilters (search, filters and sort kept in the URL)
+├── pages/           Home, Books, BookDetails, About, Contact, NotFound
+├── store/           Redux store, cart slice and cart storage (saved to localStorage)
+├── styles/          shared class helpers for buttons and inputs
+├── types/           shared TypeScript types
+├── utils/           filtering, price formatting and form helpers
 ├── App.tsx          routes
 └── main.tsx         entry point
 ```

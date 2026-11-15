@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { books, categories } from "../data/books";
+import CtaBanner from "../components/CtaBanner";
+import PageHeader from "../components/PageHeader";
+import { ROUTES } from "../constants/routes";
+import { books, categories, getAverageRating } from "../data/books";
+import { buttonClass } from "../styles/classNames";
 
 const values = [
   {
@@ -28,33 +32,21 @@ const team = [
   },
 ];
 
+// Worked out from books.json, so they stay correct when books are added.
+const stats = [
+  { value: books.length, label: "Books in the catalogue" },
+  { value: categories.length, label: "Categories" },
+  { value: `★ ${getAverageRating().toFixed(1)}`, label: "Average rating" },
+];
+
 function About() {
-  const averageRating =
-    books.reduce((total, book) => total + book.rating, 0) / books.length;
-
-  const stats = [
-    { value: books.length, label: "Books in the catalogue" },
-    { value: categories.length, label: "Categories" },
-    { value: `★ ${averageRating.toFixed(1)}`, label: "Average rating" },
-  ];
-
   return (
     <>
-      {/* Intro */}
-      <section className="bg-linear-to-b from-brand-100 to-brand-50">
-        <div className="mx-auto max-w-3xl px-4 py-14 text-center md:py-20">
-          <p className="text-sm font-semibold tracking-widest text-brand-600 uppercase">
-            About BookNest
-          </p>
-          <h1 className="mt-3 font-serif text-4xl leading-tight font-bold sm:text-5xl">
-            A small bookstore with a big love of reading
-          </h1>
-          <p className="mt-4 text-lg text-stone-700">
-            BookNest is a cosy online corner where readers can discover great
-            books, explore new subjects and build their next reading list.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="About BookNest"
+        title="A small bookstore with a big love of reading"
+        description="BookNest is a cosy online corner where readers can discover great books, explore new subjects and build their next reading list."
+      />
 
       {/* Our story */}
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-2">
@@ -139,32 +131,17 @@ function About() {
         </div>
       </section>
 
-      {/* Call to action */}
-      <section className="mx-auto max-w-6xl px-4 pb-4">
-        <div className="rounded-2xl bg-brand-700 px-6 py-12 text-center text-white sm:px-12">
-          <h2 className="font-serif text-3xl font-bold">
-            Come and browse with us
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-brand-100">
-            Explore the catalogue, or get in touch if you have a question or a
-            book you'd love to see on our shelves.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/books"
-              className="rounded-md bg-white px-6 py-3 font-medium text-brand-700 hover:bg-brand-100"
-            >
-              Browse books
-            </Link>
-            <Link
-              to="/contact"
-              className="rounded-md border border-white px-6 py-3 font-medium text-white hover:bg-brand-600"
-            >
-              Contact us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaBanner
+        title="Come and browse with us"
+        text="Explore the catalogue, or get in touch if you have a question or a book you'd love to see on our shelves."
+      >
+        <Link to={ROUTES.books} className={buttonClass("light")}>
+          Browse books
+        </Link>
+        <Link to={ROUTES.contact} className={buttonClass("outlineLight")}>
+          Contact us
+        </Link>
+      </CtaBanner>
     </>
   );
 }

@@ -1,26 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer, { type CartState } from "./cartSlice";
-
-const CART_STORAGE_KEY = "booknest-cart";
-
-function loadCart(): CartState | undefined {
-  try {
-    const saved = localStorage.getItem(CART_STORAGE_KEY);
-    if (!saved) return undefined;
-    const parsed = JSON.parse(saved) as CartState;
-    return Array.isArray(parsed.items) ? parsed : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
-function saveCart(cart: CartState) {
-  try {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-  } catch {
-    // Storage can be full or blocked (e.g. private mode); the cart still works in memory.
-  }
-}
+import cartReducer from "./cartSlice";
+import { loadCart, saveCart } from "./cartStorage";
 
 const savedCart = loadCart();
 
@@ -31,6 +11,7 @@ export const store = configureStore({
   preloadedState: savedCart ? { cart: savedCart } : undefined,
 });
 
+// Save the cart after every change, so it survives a page reload.
 store.subscribe(() => {
   saveCart(store.getState().cart);
 });

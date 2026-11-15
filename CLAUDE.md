@@ -34,21 +34,27 @@ There are no tests yet (Vitest + React Testing Library is listed as future work)
 
 There is no `/cart` page. The cart is a slide-in sidebar (`CartDrawer`) opened from the Navbar's cart button; its open state lives in `Navbar`.
 
-## Structure (target)
+## Structure
 
 ```
 src/
-├── assets/       images, icons
-├── components/   Navbar, Footer, BookCard, SearchBar, FilterPanel, CartDrawer, CartItem
-├── store/        Redux store + cartSlice
-├── data/         books.json (mock catalogue)
-├── pages/        Home, Books, BookDetails, About, Contact
+├── components/   page sections and shared UI (Navbar, Footer, BookCard, BookCover, CartDrawer,
+│                 CartItem, ContactForm, FilterPanel, SearchBar, RatingStars, EmptyState,
+│                 PageHeader, CtaBanner, SectionHeader, FormField, Layout, ScrollToTop)
+├── constants/    routes.ts (ROUTES, NAV_LINKS, bookPath, categoryPath, filter URL keys),
+│                 storeInfo.ts (store name, contact details), catalogue.ts (counts, currency)
+├── data/         books.json (mock catalogue), books.ts (lookups), categories.ts (icons, cover colours)
+├── hooks/        useBookFilters (Books page filters, stored in the URL)
+├── pages/        Home, Books, BookDetails, About, Contact, NotFound
+├── store/        Redux store, cartSlice (actions + selectors), cartStorage (localStorage)
+├── styles/       classNames.ts (buttonClass, inputClass)
 ├── types/        shared TS types (Book, CartItem)
+├── utils/        filterBooks, format (formatPrice, pluralize, parsePrice), form helpers
 ├── App.tsx       routes
 └── main.tsx      entry point (Provider + Router)
 ```
 
-Built so far: every page (Home, Books, Book Details, About, Contact), the cart sidebar, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Unknown routes and unknown book ids show a not-found message. `ScrollToTop` in `Layout` scrolls to the top on every path change.
+Built so far: every page (Home, Books, Book Details, About, Contact), the cart sidebar, and the cart slice with `localStorage` persistence. Unknown routes and unknown book ids show a not-found message. `ScrollToTop` in `Layout` scrolls to the top on every path change.
 
 Books have `"cover": ""` in the mock data; `BookCover` then draws a coloured placeholder cover per category, so no outside images (and no image credits) are needed. Set `cover` to a path in `public/` to use a real image.
 
@@ -78,7 +84,15 @@ type Book = {
 - TypeScript strict-ish config with `verbatimModuleSyntax`: use `import type` for type-only imports. `noUnusedLocals`/`noUnusedParameters` are on.
 - Functional components and hooks only. One component per file, PascalCase filenames.
 - Use typed Redux hooks (`useAppDispatch`, `useAppSelector`) rather than raw `useDispatch`/`useSelector`.
-- Define Zod schemas next to the form and infer form types with `z.infer`.
+- Define Zod schemas next to the form and infer form types with `z.infer`. Keep length limits as named constants shared by the schema and the UI.
+- No hard-coded values in components:
+  - Paths: `ROUTES`, `bookPath(id)`, `categoryPath(category)` from `constants/routes.ts`.
+  - Store name and contact details: `STORE_INFO`. Counts and currency: `constants/catalogue.ts`.
+  - Prices: `formatPrice()`. Counts with a noun: `pluralize()`.
+  - Buttons and links styled as buttons: `buttonClass(variant, size)`. Inputs: `inputClass()`.
+  - Category icons and cover colours: `getCategoryStyle()`.
+- Reuse the shared UI components (`EmptyState`, `PageHeader`, `CtaBanner`, `SectionHeader`, `FormField`, `RatingStars`) instead of copying their markup.
+- Cart selectors live in `cartSlice.ts` (`selectCartCount`, `selectQuantityInCart`, …); read them with `useAppSelector`.
 - Credit any external images or icons (academic integrity).
 
 ## Git and GitHub
