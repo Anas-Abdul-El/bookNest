@@ -48,7 +48,7 @@ src/
 └── main.tsx      entry point (Provider + Router)
 ```
 
-Built so far: Home, Books, About and Contact pages, the cart sidebar, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Routes not built yet fall through to `NotFound`.
+Built so far: every page (Home, Books, Book Details, About, Contact), the cart sidebar, shared Layout/Navbar/Footer/BookCard/BookCover, the cart slice with `localStorage` persistence, and the mock catalogue (`src/data/books.json`, read through `src/data/books.ts`). Unknown routes and unknown book ids show a not-found message. `ScrollToTop` in `Layout` scrolls to the top on every path change.
 
 Books have `"cover": ""` in the mock data; `BookCover` then draws a coloured placeholder cover per category, so no outside images (and no image credits) are needed. Set `cover` to a path in `public/` to use a real image.
 
