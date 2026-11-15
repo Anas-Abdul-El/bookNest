@@ -1,11 +1,5 @@
+import { getCategoryStyle } from "../data/categories";
 import type { Book } from "../types/book";
-
-const categoryColors: Record<string, string> = {
-  Fiction: "from-rose-700 to-rose-900",
-  Science: "from-sky-700 to-indigo-900",
-  History: "from-amber-700 to-stone-800",
-  Technology: "from-emerald-700 to-teal-900",
-};
 
 type BookCoverProps = {
   book: Book;
@@ -17,28 +11,19 @@ type BookCoverProps = {
 // Shows the cover image when the book has one; otherwise draws a simple
 // coloured cover with the title and author, so no outside images are needed.
 function BookCover({ book, className = "", compact = false }: BookCoverProps) {
+  const label = `Cover of ${book.title}`;
+  const shape = `aspect-[2/3] w-full ${compact ? "rounded" : "rounded-md"}`;
+
   if (book.cover) {
-    return (
-      <img
-        src={book.cover}
-        alt={`Cover of ${book.title}`}
-        className={`aspect-[2/3] w-full rounded-md object-cover ${className}`}
-      />
-    );
+    return <img src={book.cover} alt={label} className={`${shape} object-cover ${className}`} />;
   }
 
-  const colors = categoryColors[book.category] ?? "from-stone-600 to-stone-800";
+  const placeholder = `${shape} bg-linear-to-br text-white ${getCategoryStyle(book.category).coverGradient} ${className}`;
 
   if (compact) {
     return (
-      <div
-        role="img"
-        aria-label={`Cover of ${book.title}`}
-        className={`flex aspect-[2/3] w-full items-end rounded bg-gradient-to-br p-2 text-white ${colors} ${className}`}
-      >
-        <p className="font-serif text-[0.65rem] leading-tight font-bold">
-          {book.title}
-        </p>
+      <div role="img" aria-label={label} className={`flex items-end p-2 ${placeholder}`}>
+        <p className="font-serif text-[0.65rem] leading-tight font-bold">{book.title}</p>
       </div>
     );
   }
@@ -46,16 +31,12 @@ function BookCover({ book, className = "", compact = false }: BookCoverProps) {
   return (
     <div
       role="img"
-      aria-label={`Cover of ${book.title}`}
-      className={`flex aspect-[2/3] w-full flex-col justify-between rounded-md bg-gradient-to-br p-4 text-white shadow-inner ${colors} ${className}`}
+      aria-label={label}
+      className={`flex flex-col justify-between p-4 shadow-inner ${placeholder}`}
     >
-      <span className="text-xs tracking-widest uppercase opacity-75">
-        {book.category}
-      </span>
+      <span className="text-xs tracking-widest uppercase opacity-75">{book.category}</span>
       <div>
-        <p className="font-serif text-lg leading-tight font-bold">
-          {book.title}
-        </p>
+        <p className="font-serif text-lg leading-tight font-bold">{book.title}</p>
         <p className="mt-2 text-sm opacity-80">{book.author}</p>
       </div>
     </div>

@@ -1,3 +1,9 @@
+import { buttonClass, inputClass } from "../styles/classNames";
+import { parsePrice } from "../utils/format";
+
+// "" means "All categories".
+const ALL_CATEGORIES = "";
+
 type FilterPanelProps = {
   categories: string[];
   category: string;
@@ -9,13 +15,6 @@ type FilterPanelProps = {
   onClear: () => void;
 };
 
-// An empty price box means "no limit".
-function toPrice(value: string): number | null {
-  if (value === "") return null;
-  const price = Number(value);
-  return Number.isNaN(price) || price < 0 ? null : price;
-}
-
 function FilterPanel({
   categories,
   category,
@@ -26,35 +25,31 @@ function FilterPanel({
   onMaxPriceChange,
   onClear,
 }: FilterPanelProps) {
-  const radioClass = "h-4 w-4 accent-brand-500";
-  const priceInputClass =
-    "w-full rounded-md border border-stone-300 bg-white px-3 py-2 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 focus:outline-none";
+  const categoryOptions = [
+    { value: ALL_CATEGORIES, label: "All categories" },
+    ...categories.map((name) => ({ value: name, label: name })),
+  ];
+
+  const priceInputs = [
+    { id: "min-price", label: "Minimum price", placeholder: "Min", value: minPrice, onChange: onMinPriceChange },
+    { id: "max-price", label: "Maximum price", placeholder: "Max", value: maxPrice, onChange: onMaxPriceChange },
+  ];
 
   return (
     <div className="space-y-6 rounded-lg bg-white p-5 shadow-sm">
       <fieldset>
         <legend className="font-semibold">Category</legend>
         <div className="mt-3 space-y-2">
-          <label className="flex cursor-pointer items-center gap-2">
-            <input
-              type="radio"
-              name="category"
-              checked={category === ""}
-              onChange={() => onCategoryChange("")}
-              className={radioClass}
-            />
-            All categories
-          </label>
-          {categories.map((name) => (
-            <label key={name} className="flex cursor-pointer items-center gap-2">
+          {categoryOptions.map((option) => (
+            <label key={option.label} className="flex cursor-pointer items-center gap-2">
               <input
                 type="radio"
                 name="category"
-                checked={category === name}
-                onChange={() => onCategoryChange(name)}
-                className={radioClass}
+                checked={category === option.value}
+                onChange={() => onCategoryChange(option.value)}
+                className="h-4 w-4 accent-brand-500"
               />
-              {name}
+              {option.label}
             </label>
           ))}
         </div>
@@ -63,39 +58,33 @@ function FilterPanel({
       <fieldset>
         <legend className="font-semibold">Price (USD)</legend>
         <div className="mt-3 flex items-center gap-2">
-          <label className="sr-only" htmlFor="min-price">Minimum price</label>
-          <input
-            id="min-price"
-            type="number"
-            min={0}
-            step="0.01"
-            inputMode="decimal"
-            placeholder="Min"
-            value={minPrice ?? ""}
-            onChange={(event) => onMinPriceChange(toPrice(event.target.value))}
-            className={priceInputClass}
-          />
-          <span className="text-stone-400" aria-hidden="true">–</span>
-          <label className="sr-only" htmlFor="max-price">Maximum price</label>
-          <input
-            id="max-price"
-            type="number"
-            min={0}
-            step="0.01"
-            inputMode="decimal"
-            placeholder="Max"
-            value={maxPrice ?? ""}
-            onChange={(event) => onMaxPriceChange(toPrice(event.target.value))}
-            className={priceInputClass}
-          />
+          {priceInputs.map((input, index) => (
+            <div key={input.id} className="flex flex-1 items-center gap-2">
+              {index > 0 && (
+                <span className="text-stone-400" aria-hidden="true">
+                  –
+                </span>
+              )}
+              <label className="sr-only" htmlFor={input.id}>
+                {input.label}
+              </label>
+              <input
+                id={input.id}
+                type="number"
+                min={0}
+                step="0.01"
+                inputMode="decimal"
+                placeholder={input.placeholder}
+                value={input.value ?? ""}
+                onChange={(event) => input.onChange(parsePrice(event.target.value))}
+                className={inputClass()}
+              />
+            </div>
+          ))}
         </div>
       </fieldset>
 
-      <button
-        type="button"
-        onClick={onClear}
-        className="w-full cursor-pointer rounded-md border border-stone-300 px-4 py-2 text-sm font-medium hover:bg-stone-50"
-      >
+      <button type="button" onClick={onClear} className={`${buttonClass("secondary", "sm")} w-full`}>
         Clear filters
       </button>
     </div>
