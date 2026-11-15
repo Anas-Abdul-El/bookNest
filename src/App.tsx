@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import { ROUTES } from "./constants/routes";
 import About from "./pages/About";
 import BookDetails from "./pages/BookDetails";
 import Books from "./pages/Books";
@@ -11,11 +12,11 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="books" element={<Books />} />
-        <Route path="books/:id" element={<BookDetails />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path={ROUTES.home} element={<Home />} />
+        <Route path={ROUTES.books} element={<Books />} />
+        <Route path={ROUTES.bookDetails} element={<BookDetails />} />
+        <Route path={ROUTES.about} element={<About />} />
+        <Route path={ROUTES.contact} element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
