@@ -46,9 +46,28 @@ const cartSlice = createSlice({
       state.items = [];
     },
   },
+  // Read data from the cart. Use them with useAppSelector, e.g.
+  // useAppSelector(selectCartCount)
+  selectors: {
+    selectCartItems: (state) => state.items,
+    selectCartCount: (state) =>
+      state.items.reduce((total, item) => total + item.quantity, 0),
+    selectCartTotal: (state) =>
+      state.items.reduce((total, item) => total + item.book.price * item.quantity, 0),
+    // How many copies of one book are in the cart (0 if none).
+    selectQuantityInCart: (state, bookId: number) =>
+      state.items.find((item) => item.book.id === bookId)?.quantity ?? 0,
+  },
 });
 
 export const { addToCart, removeFromCart, updateQuantity, clearCart } =
   cartSlice.actions;
+
+export const {
+  selectCartItems,
+  selectCartCount,
+  selectCartTotal,
+  selectQuantityInCart,
+} = cartSlice.selectors;
 
 export default cartSlice.reducer;
