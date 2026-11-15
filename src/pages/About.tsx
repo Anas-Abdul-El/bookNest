@@ -41,7 +41,7 @@ function About() {
   return (
     <>
       {/* Intro */}
-      <section className="bg-gradient-to-b from-brand-100 to-brand-50">
+      <section className="bg-linear-to-b from-brand-100 to-brand-50">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center md:py-20">
           <p className="text-sm font-semibold tracking-widest text-brand-600 uppercase">
             About BookNest
@@ -79,7 +79,9 @@ function About() {
               className="flex flex-col-reverse rounded-lg bg-white p-6 text-center shadow-sm"
             >
               <dt className="mt-1 text-sm text-stone-600">{stat.label}</dt>
-              <dd className="font-serif text-3xl font-bold text-brand-600">{stat.value}</dd>
+              <dd className="font-serif text-3xl font-bold text-brand-600">
+                {stat.value}
+              </dd>
             </div>
           ))}
         </dl>
@@ -99,7 +101,9 @@ function About() {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {values.map((value) => (
               <div key={value.title} className="rounded-lg bg-brand-50 p-6">
-                <span className="text-4xl" aria-hidden="true">{value.icon}</span>
+                <span className="text-4xl" aria-hidden="true">
+                  {value.icon}
+                </span>
                 <h3 className="mt-3 text-lg font-semibold">{value.title}</h3>
                 <p className="mt-2 text-stone-700">{value.text}</p>
               </div>
@@ -110,7 +114,9 @@ function About() {
 
       {/* Team */}
       <section className="mx-auto max-w-6xl px-4 py-14">
-        <h2 className="text-center font-serif text-3xl font-bold">Meet the team</h2>
+        <h2 className="text-center font-serif text-3xl font-bold">
+          Meet the team
+        </h2>
         <div className="mt-10 flex flex-wrap justify-center gap-6">
           {team.map((member) => (
             <article
@@ -124,7 +130,9 @@ function About() {
                 {member.initials}
               </div>
               <h3 className="mt-4 text-xl font-semibold">{member.name}</h3>
-              <p className="text-sm font-medium text-brand-600">{member.role}</p>
+              <p className="text-sm font-medium text-brand-600">
+                {member.role}
+              </p>
               <p className="mt-3 text-stone-700">{member.bio}</p>
             </article>
           ))}
@@ -134,7 +142,9 @@ function About() {
       {/* Call to action */}
       <section className="mx-auto max-w-6xl px-4 pb-4">
         <div className="rounded-2xl bg-brand-700 px-6 py-12 text-center text-white sm:px-12">
-          <h2 className="font-serif text-3xl font-bold">Come and browse with us</h2>
+          <h2 className="font-serif text-3xl font-bold">
+            Come and browse with us
+          </h2>
           <p className="mx-auto mt-3 max-w-xl text-brand-100">
             Explore the catalogue, or get in touch if you have a question or a
             book you'd love to see on our shelves.
