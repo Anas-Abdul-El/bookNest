@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
-import BookCard from "../components/BookCard";
-import BookCover from "../components/BookCover";
-import EmptyState from "../components/EmptyState";
-import RatingStars from "../components/RatingStars";
-import SectionHeader from "../components/SectionHeader";
+import BookCard from "../components/shared/BookCard";
+import BookCover from "../components/shared/BookCover";
+import EmptyState from "../components/shared/EmptyState";
+import RatingStars from "../components/shared/RatingStars";
+import SectionHeader from "../components/shared/SectionHeader";
 import { ROUTES, categoryPath } from "../constants/routes";
 import { STORE_INFO } from "../constants/storeInfo";
 import { getBookById, getRelatedBooks } from "../data/books";

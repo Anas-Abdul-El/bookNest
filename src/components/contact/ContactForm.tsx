@@ -2,9 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
-import { buttonClass, inputClass } from "../styles/classNames";
-import { fieldErrorProps } from "../utils/form";
-import EmptyState from "./EmptyState";
+import { buttonClass, inputClass } from "../../styles/classNames";
+import { fieldErrorProps } from "../../utils/form";
+import EmptyState from "../shared/EmptyState";
 import FormField from "./FormField";
 
 const SUBJECTS = ["Question about a book", "Order or cart help", "Book suggestion", "Other"];

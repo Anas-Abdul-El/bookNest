@@ -55,7 +55,11 @@ The cart is not a separate page: the cart button in the navbar opens it as a sid
 
 ```
 src/
-├── components/      shared UI and page sections (Navbar, Footer, BookCard, CartDrawer, ContactForm, …)
+├── components/      grouped by the page that uses them
+│   ├── books/       search bar and filter panel (Books page)
+│   ├── contact/     contact form and form field (Contact page)
+│   ├── layout/      layout, navbar, footer and cart sidebar (every page)
+│   └── shared/      used by several pages (BookCard, BookCover, RatingStars, EmptyState, …)
 ├── constants/       routes, store details and catalogue settings
 ├── data/            books.json (mock catalogue), book lookups, category icons and colours
 ├── hooks/           useBookFilters (search, filters and sort kept in the URL)

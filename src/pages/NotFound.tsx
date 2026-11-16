@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import EmptyState from "../components/EmptyState";
+import EmptyState from "../components/shared/EmptyState";
 import { ROUTES } from "../constants/routes";
 import { buttonClass } from "../styles/classNames";
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import BookCard from "../components/BookCard";
-import EmptyState from "../components/EmptyState";
-import FilterPanel from "../components/FilterPanel";
-import SearchBar from "../components/SearchBar";
+import BookCard from "../components/shared/BookCard";
+import EmptyState from "../components/shared/EmptyState";
+import FilterPanel from "../components/books/FilterPanel";
+import SearchBar from "../components/books/SearchBar";
 import { books, categories } from "../data/books";
 import { useBookFilters } from "../hooks/useBookFilters";
 import { buttonClass, inputClass } from "../styles/classNames";

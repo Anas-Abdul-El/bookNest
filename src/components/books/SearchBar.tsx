@@ -1,4 +1,4 @@
-import { inputClass } from "../styles/classNames";
+import { inputClass } from "../../styles/classNames";
 
 type SearchBarProps = {
   value: string;

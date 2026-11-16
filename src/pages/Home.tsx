@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import BookCard from "../components/BookCard";
-import BookCover from "../components/BookCover";
-import CtaBanner from "../components/CtaBanner";
-import SectionHeader from "../components/SectionHeader";
+import BookCard from "../components/shared/BookCard";
+import BookCover from "../components/shared/BookCover";
+import CtaBanner from "../components/shared/CtaBanner";
+import SectionHeader from "../components/shared/SectionHeader";
 import { ROUTES, categoryPath } from "../constants/routes";
 import { categories, countBooksInCategory, getTopRatedBooks } from "../data/books";
 import { getCategoryStyle } from "../data/categories";

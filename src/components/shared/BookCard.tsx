@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { bookPath } from "../constants/routes";
-import { addToCart } from "../store/cartSlice";
-import { useAppDispatch } from "../store/hooks";
-import { buttonClass } from "../styles/classNames";
-import type { Book } from "../types/book";
-import { formatPrice } from "../utils/format";
+import { bookPath } from "../../constants/routes";
+import { addToCart } from "../../store/cartSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { buttonClass } from "../../styles/classNames";
+import type { Book } from "../../types/book";
+import { formatPrice } from "../../utils/format";
 import BookCover from "./BookCover";
 import RatingStars from "./RatingStars";
 
