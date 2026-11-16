@@ -4,13 +4,14 @@
 
 BookNest is a responsive online bookstore that runs entirely in the browser, built with **React**. Visitors can browse a book catalogue, search and filter it by title, author and category, open a details page for any book, and keep a shopping cart that is still there when they come back.
 
-The full write-up is in [`BookNest_Project_Report.pdf`](./BookNest_Project_Report.pdf).
+The full write-up is in [`docs/BookNest_Project_Report.pdf`](./docs/BookNest_Project_Report.pdf).
 
 | | |
 |---|---|
 | **Course** | Advanced Web Programming, Project Phase 1 |
 | **Student** | Anas |
 | **Team** | Individual project (1 member) |
+| **Repository** | <https://github.com/Anas-Abdul-El/bookNest> |
 | **Live demo** | _[add deployment URL]_ |
 
 ---
@@ -65,7 +66,14 @@ src/
 ├── utils/           filtering, price formatting and form helpers
 ├── App.tsx          routes
 └── main.tsx         entry point
+
+docs/
+├── BookNest_Project_Report.pdf   project report
+├── report/                       report source (report.html) and build script
+└── screenshots/                  screenshots used in the README and report
 ```
+
+To rebuild the report after changing the code or `docs/report/report.html` (needs Chromium), run `node docs/report/build-report.mjs`. The code snippets are copied from the source files when it runs.
 
 ### Book data model
 
@@ -85,7 +93,7 @@ src/
 
 ```bash
 # clone the repository
-git clone <repository-url>
+git clone https://github.com/Anas-Abdul-El/bookNest.git
 cd bookNest
 
 # install dependencies
@@ -110,7 +118,13 @@ pnpm dev
 
 ## Screenshots
 
-_Screenshots of Home, Books, Book Details, the cart sidebar and the mobile views will be added here._
+| Home | Books (filtered) |
+|---|---|
+| ![Home page](docs/screenshots/home.png) | ![Books page filtered to Science](docs/screenshots/books-filtered.png) |
+| **Book Details** | **Cart sidebar** |
+| ![Book Details page](docs/screenshots/book-details.png) | ![Cart sidebar](docs/screenshots/cart.png) |
+| **Contact form validation** | **Mobile (390 px)** |
+| ![Contact form with validation errors](docs/screenshots/contact-errors.png) | ![Books page on a phone](docs/screenshots/mobile-books.png) |
 
 ## Scope and limitations
 
