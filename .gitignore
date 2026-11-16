@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 *.pdf
+# ...except the project report deliverable
+!docs/BookNest_Project_Report.pdf
+docs/report/report.built.html

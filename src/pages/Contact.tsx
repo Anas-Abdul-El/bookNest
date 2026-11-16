@@ -1,5 +1,5 @@
-import ContactForm from "../components/ContactForm";
-import PageHeader from "../components/PageHeader";
+import ContactForm from "../components/contact/ContactForm";
+import PageHeader from "../components/shared/PageHeader";
 import { STORE_INFO } from "../constants/storeInfo";
 
 const contactDetails = [

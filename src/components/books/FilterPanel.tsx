@@ -1,5 +1,5 @@
-import { buttonClass, inputClass } from "../styles/classNames";
-import { parsePrice } from "../utils/format";
+import { buttonClass, inputClass } from "../../styles/classNames";
+import { parsePrice } from "../../utils/format";
 
 // "" means "All categories".
 const ALL_CATEGORIES = "";

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { bookPath } from "../constants/routes";
-import { removeFromCart, updateQuantity } from "../store/cartSlice";
-import { useAppDispatch } from "../store/hooks";
-import type { CartItem as CartItemType } from "../types/book";
-import { formatPrice } from "../utils/format";
-import BookCover from "./BookCover";
+import { bookPath } from "../../constants/routes";
+import { removeFromCart, updateQuantity } from "../../store/cartSlice";
+import { useAppDispatch } from "../../store/hooks";
+import type { CartItem as CartItemType } from "../../types/book";
+import { formatPrice } from "../../utils/format";
+import BookCover from "../shared/BookCover";
 
 type CartItemProps = {
   item: CartItemType;

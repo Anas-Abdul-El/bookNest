@@ -38,9 +38,12 @@ There is no `/cart` page. The cart is a slide-in sidebar (`CartDrawer`) opened f
 
 ```
 src/
-├── components/   page sections and shared UI (Navbar, Footer, BookCard, BookCover, CartDrawer,
-│                 CartItem, ContactForm, FilterPanel, SearchBar, RatingStars, EmptyState,
-│                 PageHeader, CtaBanner, SectionHeader, FormField, Layout, ScrollToTop)
+├── components/   grouped by the page that uses them:
+│   ├── books/    FilterPanel, SearchBar (Books page only)
+│   ├── contact/  ContactForm, FormField (Contact page only)
+│   ├── layout/   Layout, Navbar, Footer, ScrollToTop, CartDrawer, CartItem (on every page)
+│   └── shared/   used by several pages: BookCard, BookCover, RatingStars, EmptyState,
+│                 PageHeader, SectionHeader, CtaBanner
 ├── constants/    routes.ts (ROUTES, NAV_LINKS, bookPath, categoryPath, filter URL keys),
 │                 storeInfo.ts (store name, contact details), catalogue.ts (counts, currency)
 ├── data/         books.json (mock catalogue), books.ts (lookups), categories.ts (icons, cover colours)
@@ -83,6 +86,7 @@ type Book = {
 
 - TypeScript strict-ish config with `verbatimModuleSyntax`: use `import type` for type-only imports. `noUnusedLocals`/`noUnusedParameters` are on.
 - Functional components and hooks only. One component per file, PascalCase filenames.
+- Put a component used by one page in `components/<page>/` (lowercase page name); move it to `components/shared/` once a second page uses it. App-wide chrome goes in `components/layout/`.
 - Use typed Redux hooks (`useAppDispatch`, `useAppSelector`) rather than raw `useDispatch`/`useSelector`.
 - Define Zod schemas next to the form and infer form types with `z.infer`. Keep length limits as named constants shared by the schema and the UI.
 - No hard-coded values in components:

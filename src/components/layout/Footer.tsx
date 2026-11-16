@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { NAV_LINKS, ROUTES } from "../constants/routes";
-import { STORE_INFO } from "../constants/storeInfo";
+import { NAV_LINKS, ROUTES } from "../../constants/routes";
+import { STORE_INFO } from "../../constants/storeInfo";
 
 // Every navbar link except Home.
 const footerLinks = NAV_LINKS.filter((link) => link.to !== ROUTES.home);

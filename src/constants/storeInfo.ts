@@ -11,4 +11,4 @@ export const STORE_INFO = {
   address: "12 Reading Lane, Booktown",
   replyTime: "We usually reply within one working day.",
   shipping: "Free",
-} as const;
+};

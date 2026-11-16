@@ -1,18 +1,18 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../constants/routes";
-import { STORE_INFO } from "../constants/storeInfo";
+import { ROUTES } from "../../constants/routes";
+import { STORE_INFO } from "../../constants/storeInfo";
 import {
   clearCart,
   selectCartCount,
   selectCartItems,
   selectCartTotal,
-} from "../store/cartSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { buttonClass } from "../styles/classNames";
-import { formatPrice } from "../utils/format";
+} from "../../store/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { buttonClass } from "../../styles/classNames";
+import { formatPrice } from "../../utils/format";
 import CartItem from "./CartItem";
-import EmptyState from "./EmptyState";
+import EmptyState from "../shared/EmptyState";
 
 type CartDrawerProps = {
   isOpen: boolean;

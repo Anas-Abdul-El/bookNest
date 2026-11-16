@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { NAV_LINKS, ROUTES } from "../constants/routes";
-import { STORE_INFO } from "../constants/storeInfo";
-import { selectCartCount } from "../store/cartSlice";
-import { useAppSelector } from "../store/hooks";
+import { NAV_LINKS, ROUTES } from "../../constants/routes";
+import { STORE_INFO } from "../../constants/storeInfo";
+import { selectCartCount } from "../../store/cartSlice";
+import { useAppSelector } from "../../store/hooks";
 import CartDrawer from "./CartDrawer";
 
 function navLinkClass({ isActive }: { isActive: boolean }) {

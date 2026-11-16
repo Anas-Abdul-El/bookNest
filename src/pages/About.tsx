@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import CtaBanner from "../components/CtaBanner";
-import PageHeader from "../components/PageHeader";
+import CtaBanner from "../components/shared/CtaBanner";
+import PageHeader from "../components/shared/PageHeader";
 import { ROUTES } from "../constants/routes";
 import { books, categories, getAverageRating } from "../data/books";
 import { buttonClass } from "../styles/classNames";

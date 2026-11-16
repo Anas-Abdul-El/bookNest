@@ -1,5 +1,5 @@
-import { getCategoryStyle } from "../data/categories";
-import type { Book } from "../types/book";
+import { getCategoryStyle } from "../../data/categories";
+import type { Book } from "../../types/book";
 
 type BookCoverProps = {
   book: Book;

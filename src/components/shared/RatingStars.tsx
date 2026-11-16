@@ -1,4 +1,4 @@
-import { MAX_RATING } from "../constants/catalogue";
+import { MAX_RATING } from "../../constants/catalogue";
 
 type RatingStarsProps = {
   rating: number;
