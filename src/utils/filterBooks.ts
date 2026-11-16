@@ -37,8 +37,10 @@ export function filterBooks(books: Book[], filters: BookFilters): Book[] {
       book.author.toLowerCase().includes(search);
     const matchesCategory =
       filters.category === "" || book.category === filters.category;
-    const matchesMin = filters.minPrice === null || book.price >= filters.minPrice;
-    const matchesMax = filters.maxPrice === null || book.price <= filters.maxPrice;
+    const matchesMin =
+      filters.minPrice === null || book.price >= filters.minPrice;
+    const matchesMax =
+      filters.maxPrice === null || book.price <= filters.maxPrice;
 
     return matchesSearch && matchesCategory && matchesMin && matchesMax;
   });
